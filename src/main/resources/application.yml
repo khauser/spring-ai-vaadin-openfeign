@@ -1,0 +1,50 @@
+server:
+  servlet:
+    context-path: /vaadin-app
+
+spring:
+  application:
+    name: ai
+  ai:
+#    azure:
+#      openai:
+#        api-key: <your-api-key>
+#        endpoint: <your-endpoint>
+#        chat:
+#          options:
+#            temperature: 0.7
+#            deployment-name: gpt-4o-mini
+#            model: gpt-4o-mini
+    openai:
+      api-key: <your-api-key>
+#      chat:
+#        options:
+#          temperature: 0.7
+          #model: gpt-4o
+
+vaadin:
+  allowed-packages: com.vaadin,org.vaadin,com.example.ai					 
+################
+# FEIGN and CB #
+################
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: false
+  okhttp:
+    enabled: true
+  httpclient:
+    hc5:
+      enabled: true
+  client:
+    config:
+      default:
+        connect-timeout: 3000
+        read-timeout: 5000
+        logger-level: full
+
+logging:
+  level:
+    org.springframework.ai.chat: DEBUG
+    org.springframework.ai.chat.client.advisor: DEBUG
+    org.springframework.web: DEBUG
